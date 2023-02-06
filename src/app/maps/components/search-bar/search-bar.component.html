@@ -1,0 +1,28 @@
+<div class="fixed top-4 right-4 left-4 md:w-96">
+  <input
+    [formControl]="searchControl"
+    (focus)="onFocusInput()"
+    type="search"
+    placeholder="Search something e.g. 'Central Park'"
+    class="input input-bordered w-full mb-1"
+  />
+  <ul
+    *ngIf="showResults"
+    class="menu p-2 bg-base-100 rounded-box border border-gray-300"
+  >
+    <li>
+      <a
+        *ngFor="let feature of featureResults"
+        (click)="flyToFeature(feature)"
+        [class.active]="selectedFeatureId === feature.id"
+        class="mb-1 last:mb-0"
+      >
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <p class="font-bold">{{ feature.text }}</p>
+          <p class="text-xs">{{ feature.place_name }}</p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
